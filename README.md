@@ -29,30 +29,38 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 ## 📂 Estrutura do Projeto
 medallion-architecture/
 │
-├── bronze/                     # Camada Bronze: dados brutos
-│   ├── cep_info.csv
-│   ├── products.json
-│   └── users.csv
+├── data/                      # Dados organizados por camadas
+│   ├── bronze/                # Camada Bronze: dados brutos
+│   │   ├── cep_info.csv
+│   │   ├── products.json
+│   │   └── users.csv
+│   │
+│   ├── silver/                # Camada Silver: dados tratados/validados
+│   │   ├── cep_info.parquet
+│   │   ├── products.parquet
+│   │   └── users.parquet
+│   │
+│   └── gold/                  # Camada Gold: dados prontos para análise
+│       └── query.sql
 │
-├── silver/                     # Camada Silver: dados tratados/validados
-│   ├── cep_info.parquet
-│   ├── products.parquet
-│   └── users.parquet
+├── etl/                       # Scripts de ETL (local)
+│   ├── extract/               # Extração
+│   │   └── get_data.py
+│   │
+│   ├── transform/             # Transformação
+│   │   ├── normalize_data.py
+│   │   └── normalize_data_class.py
+│   │
+│   ├── load/                  # Carregamento
+│   │   └── populate_db.py
+│   │
+│   ├── utils/                 # Utilitários
+│   │   ├── db.py              # Conexão com banco
+│   │   ├── data-view.py       # Visualização dos dados
+│   │   └── teste_conexao.py   # Teste de conexão
 │
-├── gold/                       # Camada Gold: dados prontos para análise
-│   └── query.sql
-│
-├── etl-local/                  # Scripts locais de ETL
-│   ├── get_data.py             # Extração dos dados
-│   ├── normalize_data.py       # Transformação dos dados
-│   ├── normalize_data_class.py # Classe auxiliar para normalização
-│   ├── populate_db.py          # Carregamento em banco
-│   ├── db.py                   # Conexão com banco de dados / Data Access
-│   ├── data-view.py            # Visualização dos dados / Data Access
-│   └── teste_conexao.py        # Teste de conexão
-│
-└── architecture-diagram.png    # Diagrama da arquitetura
-
+└── docs/                      # Documentação e diagramas
+    └── architecture-diagram.png
 
 ## ☁️ Guia Rápido na AWS
 - **Bronze**: : Armazene os dados brutos em buckets S3 
