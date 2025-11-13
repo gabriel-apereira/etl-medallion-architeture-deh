@@ -27,7 +27,6 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 ---
 
 ## 📂 Estrutura do Projeto
-
 medallion-architecture/
 │
 ├── bronze/                     # Camada Bronze: dados brutos
@@ -43,14 +42,14 @@ medallion-architecture/
 ├── gold/                       # Camada Gold: dados prontos para análise
 │   └── query.sql
 │
-├── etl-local/                 
-│   ├── get_data.py             
-│   ├── normalize_data.py       
-│   ├── normalize_data_class.py 
-│   ├── populate_db.py            
-│   ├── db.py                   #Local Access    
-│   ├── data-view.py            #Local Access
-│   └── teste_conexao.py        
+├── etl-local/                  # Scripts locais de ETL
+│   ├── get_data.py             # Extração dos dados
+│   ├── normalize_data.py       # Transformação dos dados
+│   ├── normalize_data_class.py # Classe auxiliar para normalização
+│   ├── populate_db.py          # Carregamento em banco
+│   ├── db.py                   # Conexão com banco de dados / Data Access
+│   ├── data-view.py            # Visualização dos dados / Data Access
+│   └── teste_conexao.py        # Teste de conexão
 │
 └── architecture-diagram.png    # Diagrama da arquitetura
 
