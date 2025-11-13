@@ -1,7 +1,9 @@
 # 🐍 Medallion Architecture — ETL em Python (Local + AWS)
 
-Este projeto demonstra como implementar a **Arquitetura Medallion** em duas etapas:  
-- **Local:** execução e testes na máquina do desenvolvedor com Python.  
+Este projeto foi desenvolvido como parte do curso do **[Data Engineer Help]
+
+Este projeto demonstra como implementar a **Arquitetura Medallion**  de duas formas:  
+- **Local:** execução e testes na máquina do desenvolvedor com Python, utilizando scripts em python e armazenamento final no SQL Server local.  
 - **AWS:** implantação em serviços gerenciados para escalabilidade e análise avançada.  
 
 A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando **S3, Glue, Athena e Redshift** para criar um pipeline robusto de ingestão, transformação e análise de dados.
@@ -19,12 +21,46 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 
 ## 🛠️ Tecnologias Utilizadas
 - **Python** (ETL local)  
-- **SQL** (consultas e análises)  
-- **Docker** (ambiente isolado, opcional)  
-- **AWS S3, Glue, Athena, Redshift, QuickSight**  
+- **SQL Server** (consultas e análises - Local)  
+- **AWS S3, Glue, Athena, Redshift, QuickSight**  (AWWS)
 
 ---
 
 ## 📂 Estrutura do Projeto
 
-medallion-architecture/ │ ├── 01-bronze-raw/ # Dados brutos (CSV, JSON) │ ├── cep_info.csv │ ├── products.json │ └── users.csv │ ├── 02-silver-validated/ # Dados limpos e validados (Parquet) │ ├── cep_info.parquet │ ├── products.parquet │ └── users.parquet │ ├── 03-gold-enriched/ # Dados prontos para análise │ └── query.sql │ ├── data-access/ # Scripts e notebooks de acesso aos dados │ ├── db.py │ ├── data-view.py │ └── data-view.ipynb │ ├── etl-local/ # Scripts locais de ETL │ ├── get_data.py │ ├── normalize_data.py │ ├── populate_db.py │ └── teste_conexao.py │ └── architecture-diagram.png # Diagrama da arquitetura
+medallion-architecture/
+│
+├── bronze/            # Dados brutos (CSV, JSON)
+│   ├── cep_info.csv
+│   ├── products.json
+│   └── users.csv
+│
+├── silver/      # Dados limpos e validados (Parquet)
+│   ├── cep_info.parquet
+│   ├── products.parquet
+│   └── users.parquet 
+│
+├── gold/         # Dados prontos para análise
+│   └── query.sql
+│
+├── etl-local/              # Scripts e notebooks de acesso aos dados
+|   ├── get_data.py 
+│   ├── normalize_data.py
+│   ├── normalize_data_class.py 
+│   ├── populate_db.py 
+│   ├── db.py *(Data Access AWS)
+│   ├── data-view.py *(Data Access AWS)
+│   └── teste_conexao.py
+|
+└── architecture-diagram.png  # Diagrama da arquitetura
+
+## ☁️ Guia Rápido na AWS
+- **Bronze**: : Armazene os dados brutos em buckets S3 
+- **Silver**: Use AWS Glue para validar e transformar os dados (Parquet)
+- **Gold**: Faça queries com Athena diretamente nos dados prontos no S3
+- **Data Access**: Importe os dados no Amazon Redshift e conecte ao Amazon QuickSight para dashboards
+
+## 📸 Diagrama
+
+<img width="1194" height="1572" alt="architecture-diagram" src="https://github.com/user-attachments/assets/2be4cbbb-8519-48e9-b4f3-91f8580d9815" />
+
