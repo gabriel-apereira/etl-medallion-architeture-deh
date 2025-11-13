@@ -1,6 +1,6 @@
 # 🐍 Medallion Architecture — ETL em Python (Local + AWS)
 
-Este projeto foi desenvolvido como parte do curso do **[Data Engineer Help]
+Este projeto foi desenvolvido como parte do curso do **[Data Engineer Help]**
 
 Este projeto demonstra como implementar a **Arquitetura Medallion**  de duas formas:  
 - **Local:** execução e testes na máquina do desenvolvedor com Python, utilizando scripts em python e armazenamento final no SQL Server local.  
@@ -27,7 +27,8 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 ---
 
 ## 📂 Estrutura do Projeto
-'''medallion-architecture/
+```
+medallion-architecture/
 │
 ├── data/                      # Dados organizados por camadas
 │   ├── bronze/                # Camada Bronze: dados brutos
@@ -60,7 +61,8 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 │   │   └── teste_conexao.py   # Teste de conexão
 │
 └── docs/                      # Documentação e diagramas
-    └── architecture-diagram.png'''
+    └── architecture-diagram.png
+```
 
 ## ☁️ Guia Rápido na AWS
 - **Bronze**: : Armazene os dados brutos em buckets S3 
