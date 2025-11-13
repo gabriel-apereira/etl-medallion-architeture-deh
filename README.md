@@ -28,7 +28,32 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 
 ## 📂 Estrutura do Projeto
 
-medallion-architecture/ │ ├── bronze/ # Dados brutos (CSV, JSON) │ ├── cep_info.csv │ ├── products.json │ └── users.csv │ ├── silver/ # Dados tratados (Parquet) │ ├── cep_info.parquet │ ├── products.parquet │ └── users.parquet │ ├── gold/ # Dados prontos para análise │ └── query.sql │ ├── etl-local/ # Scripts locais de ETL │ ├── get_data.py │ ├── normalize_data.py │ ├── normalize_data_class.py │ ├── populate_db.py │ ├── db.py │ ├── data-view.py │ └── teste_conexao.py │ └── architecture-diagram.png # Diagrama da arquitetura
+medallion-architecture/
+│
+├── bronze/                     # Camada Bronze: dados brutos
+│   ├── cep_info.csv
+│   ├── products.json
+│   └── users.csv
+│
+├── silver/                     # Camada Silver: dados tratados/validados
+│   ├── cep_info.parquet
+│   ├── products.parquet
+│   └── users.parquet
+│
+├── gold/                       # Camada Gold: dados prontos para análise
+│   └── query.sql
+│
+├── etl-local/                 
+│   ├── get_data.py             
+│   ├── normalize_data.py       
+│   ├── normalize_data_class.py 
+│   ├── populate_db.py            
+│   ├── db.py                   #Local Access    
+│   ├── data-view.py            #Local Access
+│   └── teste_conexao.py        
+│
+└── architecture-diagram.png    # Diagrama da arquitetura
+
 
 ## ☁️ Guia Rápido na AWS
 - **Bronze**: : Armazene os dados brutos em buckets S3 
