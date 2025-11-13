@@ -27,7 +27,7 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 ---
 
 ## 📂 Estrutura do Projeto
-medallion-architecture/
+'''medallion-architecture/
 │
 ├── data/                      # Dados organizados por camadas
 │   ├── bronze/                # Camada Bronze: dados brutos
@@ -60,7 +60,7 @@ medallion-architecture/
 │   │   └── teste_conexao.py   # Teste de conexão
 │
 └── docs/                      # Documentação e diagramas
-    └── architecture-diagram.png
+    └── architecture-diagram.png'''
 
 ## ☁️ Guia Rápido na AWS
 - **Bronze**: : Armazene os dados brutos em buckets S3 
