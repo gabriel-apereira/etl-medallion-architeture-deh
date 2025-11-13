@@ -20,39 +20,15 @@ A arquitetura é dividida em três camadas (Bronze, Silver e Gold), utilizando *
 ---
 
 ## 🛠️ Tecnologias Utilizadas
-- **Python** (ETL local)  
-- **SQL Server** (consultas e análises - Local)  
-- **AWS S3, Glue, Athena, Redshift, QuickSight**  (AWWS)
+- **Python**  
+- **SQL**  
+- **AWS S3, Glue, Athena, Redshift, QuickSight**
 
 ---
 
 ## 📂 Estrutura do Projeto
 
-medallion-architecture/
-│
-├── bronze/            # Dados brutos (CSV, JSON)
-│   ├── cep_info.csv
-│   ├── products.json
-│   └── users.csv
-│
-├── silver/      # Dados limpos e validados (Parquet)
-│   ├── cep_info.parquet
-│   ├── products.parquet
-│   └── users.parquet 
-│
-├── gold/         # Dados prontos para análise
-│   └── query.sql
-│
-├── etl-local/              # Scripts e notebooks de acesso aos dados
-|   ├── get_data.py 
-│   ├── normalize_data.py
-│   ├── normalize_data_class.py 
-│   ├── populate_db.py 
-│   ├── db.py *(Data Access AWS)
-│   ├── data-view.py *(Data Access AWS)
-│   └── teste_conexao.py
-|
-└── architecture-diagram.png  # Diagrama da arquitetura
+medallion-architecture/ │ ├── bronze/ # Dados brutos (CSV, JSON) │ ├── cep_info.csv │ ├── products.json │ └── users.csv │ ├── silver/ # Dados tratados (Parquet) │ ├── cep_info.parquet │ ├── products.parquet │ └── users.parquet │ ├── gold/ # Dados prontos para análise │ └── query.sql │ ├── etl-local/ # Scripts locais de ETL │ ├── get_data.py │ ├── normalize_data.py │ ├── normalize_data_class.py │ ├── populate_db.py │ ├── db.py │ ├── data-view.py │ └── teste_conexao.py │ └── architecture-diagram.png # Diagrama da arquitetura
 
 ## ☁️ Guia Rápido na AWS
 - **Bronze**: : Armazene os dados brutos em buckets S3 
