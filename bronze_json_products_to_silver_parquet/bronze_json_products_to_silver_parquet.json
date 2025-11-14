@@ -1,0 +1,40 @@
+{
+  "name" : "bronze_json_products_to_silver_parquet",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::594165872209:role/service-role/AWSGlueServiceRole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-594165872209-us-east-2/scripts/bronze_json_products_to_silver_parquet.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-594165872209-us-east-2/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-594165872209-us-east-2/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1763137086158\":{\"S3JsonSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://deh-lake-teste/bronze/products.json\"},\"Exclusions\":[],\"JsonPath\":\"\",\"Multiline\":false,\"Name\":\"Amazon S3\",\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"id\",\"Type\":\"int\"},{\"Name\":\"nome\",\"Type\":\"string\"},{\"Name\":\"categoria\",\"Type\":\"string\"},{\"Name\":\"preco\",\"Type\":\"double\"},{\"Name\":\"marca\",\"Type\":\"string\"},{\"Name\":\"descricao\",\"Type\":\"string\"},{\"Name\":\"estoque\",\"Type\":\"int\"},{\"Name\":\"avaliacao\",\"Type\":\"double\"},{\"Name\":\"tags\",\"Type\":\"array<string>\"}]}],\"Paths\":[\"s3://deh-lake-teste/bronze/products.json\"],\"Recurse\":true}},\"node-1763137121697\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1763137061607\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1763137117185\"],\"Name\":\"Amazon S3\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://deh-lake-teste/silver/products/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1763137117185\":{\"ApplyMapping\":{\"Inputs\":[\"node-1763137086158\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"id\"],\"FromType\":\"int\",\"ToKey\":\"id\",\"ToType\":\"int\"},{\"Dropped\":false,\"FromPath\":[\"nome\"],\"FromType\":\"string\",\"ToKey\":\"nome\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"categoria\"],\"FromType\":\"string\",\"ToKey\":\"categoria\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"preco\"],\"FromType\":\"double\",\"ToKey\":\"preco\",\"ToType\":\"double\"},{\"Dropped\":false,\"FromPath\":[\"marca\"],\"FromType\":\"string\",\"ToKey\":\"marca\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"descricao\"],\"FromType\":\"string\",\"ToKey\":\"descricao\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"estoque\"],\"FromType\":\"int\",\"ToKey\":\"estoque\",\"ToType\":\"int\"},{\"Dropped\":false,\"FromPath\":[\"avaliacao\"],\"FromType\":\"double\",\"ToKey\":\"avaliacao\",\"ToType\":\"double\"},{\"Dropped\":false,\"FromPath\":[\"tags\"],\"FromType\":\"array\",\"ToKey\":\"tags\",\"ToType\":\"array\"}],\"Name\":\"Change Schema\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "etl-medallion-architeture-deh",
+    "branch" : "main",
+    "folder" : "bronze_json_products_to_silver_parquet"
+  }
+}
