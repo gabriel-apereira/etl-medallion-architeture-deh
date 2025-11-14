@@ -1,0 +1,40 @@
+{
+  "name" : "bronze_csv_user_to_silver_parquet",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::594165872209:role/service-role/AWSGlueServiceRole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-594165872209-us-east-2/scripts/bronze_csv_user_to_silver_parquet.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-594165872209-us-east-2/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-594165872209-us-east-2/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 2,
+  "timeout" : 480,
+  "maxCapacity" : 2.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 2,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1763126254341\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1763126049824\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1763126200109\"],\"Name\":\"Amazon S3\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://deh-lake-teste/silver/user/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1763126200109\":{\"ApplyMapping\":{\"Inputs\":[\"node-1763125634896\"],\"Mapping\":[{\"Dropped\":false,\"FromPath\":[\"id\"],\"FromType\":\"string\",\"ToKey\":\"id\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"nome\"],\"FromType\":\"string\",\"ToKey\":\"nome\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"email\"],\"FromType\":\"string\",\"ToKey\":\"email\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"telefone\"],\"FromType\":\"string\",\"ToKey\":\"telefone\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"cep\"],\"FromType\":\"string\",\"ToKey\":\"cep\",\"ToType\":\"string\"},{\"Dropped\":false,\"FromPath\":[\"data_nascimento\"],\"FromType\":\"string\",\"ToKey\":\"data_nascimento\",\"ToType\":\"date\"},{\"Dropped\":false,\"FromPath\":[\"genero\"],\"FromType\":\"string\",\"ToKey\":\"genero\",\"ToType\":\"string\"}],\"Name\":\"Change Schema\"}},\"node-1763125634896\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://deh-lake-teste/bronze/users.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Amazon S3\",\"OptimizePerformance\":false,\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"id\",\"Type\":\"string\"},{\"Name\":\"nome\",\"Type\":\"string\"},{\"Name\":\"email\",\"Type\":\"string\"},{\"Name\":\"telefone\",\"Type\":\"string\"},{\"Name\":\"cep\",\"Type\":\"string\"},{\"Name\":\"data_nascimento\",\"Type\":\"string\"},{\"Name\":\"genero\",\"Type\":\"string\"}]}],\"Paths\":[\"s3://deh-lake-teste/bronze/users.csv\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "etl-medallion-architeture-deh",
+    "branch" : "main",
+    "folder" : "AWS Glue"
+  }
+}
